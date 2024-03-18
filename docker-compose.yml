@@ -1,4 +1,18 @@
 services:
+
+  database:
+    image: postgres:latest
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_storage:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+      
   book-api:
     build:
       context: .
@@ -24,17 +38,7 @@ services:
       - database
 
 
-  database:
-    image: postgres:latest
-    container_name: postgres
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_storage:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+
 
 
 
