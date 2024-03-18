@@ -10,7 +10,7 @@ username = 'admin' email = 'admin@admin.com' password = 'admin'
 
 4. В сваггре представлены все эндпоинты - для парсинга json файла с книгами из задания:
 
-А. - обратиться по эндпоинту в swagger-ui и передать полный url (https://gitlab.grokhotov.ru/hr/python-test-vacancy/-/raw/master/books.json)
+А. - обратиться по эндпоинту в swagger-ui и передать полный url к файлу json (https://gitlab.grokhotov.ru/hr/python-test-vacancy/-/raw/master/books.json) 
 
 Б. - В адресной строке передать /api/parsebooks/?url=https://gitlab.grokhotov.ru/hr/python-test-vacancy/-/raw/master/books.json/
 
