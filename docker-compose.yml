@@ -1,0 +1,46 @@
+services:
+  book-api:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - static_volume:/books_api_service/static
+      - media_volume:/books_api_service/media
+    environment:
+      - DB_HOST=database
+      - DB_NAME=postgres
+      - DB_USER=postgres
+      - DB_PASS=postgres
+
+    # админ автоматически авторизовавыется
+    command: >
+      sh -c "python manage.py makemigrations && 
+      python manage.py migrate && 
+      python manage.py initadmin &&
+      python manage.py runserver 0.0.0.0:8000" 
+
+    depends_on:
+      - database
+
+
+  database:
+    image: postgres:latest
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_storage:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+
+
+
+
+volumes:
+  static_volume:
+  media_volume:
+  postgres_storage:
